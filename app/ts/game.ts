@@ -3,6 +3,7 @@ class Game {
     private sprites: Array<Engine.Sprite>;
 
     constructor(private context: any, private width: number, private height: number) {
+        this.context.canvas.addEventListener('click', (event: MouseEvent) => {this.click(event)});
         this.sprites = [];
         this.renderer = new Engine.Renderer(context, width, height, (timestamp) => {this.renderWorld(timestamp);}); // wrap in a method ot preserve the reference to the class
                 
@@ -30,4 +31,17 @@ class Game {
             sprite.render(this.context, timestamp);
         });
     };
+
+    private click(event: MouseEvent) : void {
+        var x = event.offsetX;
+        var y = event.offsetY;
+
+        this.sprites.forEach((sprite) => {
+            if(sprite.checkCollision(x, y)){
+                sprite.click(event);
+            }
+        });
+        console.log('x: ' + event.offsetX);
+        console.log('y: ' + event.offsetY);
+    }
 }

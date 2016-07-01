@@ -1,5 +1,5 @@
 module Engine {
-   export class Sprite implements IAnimate, IRender {
+   export class Sprite implements IAnimate, IRender, IGetClicked {
        public frames: number;
        public fps: number;
        public image: HTMLImageElement;
@@ -39,6 +39,16 @@ module Engine {
             if (this.currentFrame >= this.frames) {
                 this.currentFrame = 0;
             }
+        }
+
+        public checkCollision(x: number, y: number) : boolean {
+            if (y >= this.y && y <= this.y + this.frameHeight && x >= this.x && x <= this.x + this.frameWidth)
+                return true;
+            return false;
+        }
+
+        public click(event: MouseEvent) : void {
+            console.log('Sprite Got Clicked');
         }
     }   
 }
