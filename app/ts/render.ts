@@ -1,6 +1,5 @@
 module Engine {
     export interface IRender {        
-        lastTimestamp;
         render(context: CanvasRenderingContext2D, elapsedTime): void;
     }
     
