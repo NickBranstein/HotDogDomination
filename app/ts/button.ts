@@ -4,7 +4,7 @@ module Engine {
        height: number;
        width: number;
        
-        constructor(public x: number, public y: number, public text: string) {
+        constructor(public x: number, public y: number, public text: string, private callback?: () => any) {
         }
         
         public render(context: CanvasRenderingContext2D, timestamp): void {    
@@ -23,6 +23,10 @@ module Engine {
 
         public click(event: MouseEvent) : void {
             console.log('Button Got Clicked');
+
+            if (this.callback != null) {
+                this.callback();    
+            }
         }
     }   
 }

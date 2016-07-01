@@ -6,7 +6,7 @@ module Engine {
        private currentFrame: number;
        lastTimestamp;
        
-        constructor(public x: number, public y: number, public frameWidth: number, public frameHeight: number, source: string, frames?: number, fps?: number) {
+        constructor(public x: number, public y: number, public frameWidth: number, public frameHeight: number, source: string, frames?: number, fps?: number, private callback?: () => any) {
             this.image = new Image();
             this.image.src = source;
             this.currentFrame = 0;
@@ -49,6 +49,10 @@ module Engine {
 
         public click(event: MouseEvent) : void {
             console.log('Sprite Got Clicked');
+            
+            if (this.callback != null) {
+                this.callback();    
+            }
         }
     }   
 }

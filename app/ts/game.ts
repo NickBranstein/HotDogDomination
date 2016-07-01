@@ -43,16 +43,10 @@ class Game {
     };
 
     private click(event: MouseEvent) : void {
-        var x = event.offsetX;
-        var y = event.offsetY;
-
         this.currentLevel.sprites.forEach((sprite) => {
-            if(sprite.checkCollision(x, y)){
+            if(sprite.checkCollision(event.offsetX, event.offsetY)){
                 sprite.click(event);
             }
         });
-
-        console.log('x: ' + event.offsetX);
-        console.log('y: ' + event.offsetY);
     }
 }
